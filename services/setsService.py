@@ -44,3 +44,7 @@ class SetsService:
             return self.sets_data
         except IndexError:
             print("unu")
+
+    def __total_sets_value__(self):
+        sets = self.__total_sets__()
+        return len(sets)

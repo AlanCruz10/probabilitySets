@@ -17,13 +17,19 @@ class ViewDataSets:
         self.__number_text__.pack()
         self.__number_entry__ = tk.Entry(self.__w__)
         self.__number_entry__.pack()
-        self.__add_button__ = tk.Button(self.__w__, text="Agregar datos", command=lambda: self.__add_data__())
+        self.__new_problem_button__ = tk.Button(self.__w__, text="Nuevo calculo",
+                                                command=lambda: self.__new_problem__(),
+                                                background="white", foreground="red", overrelief="groove", height=2,
+                                                width=12)
+        self.__add_button__ = tk.Button(self.__w__, text="Agregar datos", command=lambda: self.__add_data__(),
+                                        background="blue", foreground="white")
         self.__add_button__.pack()
         self.__table_frame__ = tk.Frame(self.__w__)
         self.__table_frame__.place()
         self.__data_table__ = None
-        self.__results_button__ = tk.Button(self.__w__, text="Ver Resultados", command=lambda: self.__results_data__())
-        self.__results_button__.pack()
+        self.__results_button__ = tk.Button(self.__w__, text="Ver Resultados", command=lambda: self.__results_data__(),
+                                            background="red", foreground="white")
+        self.__results_button__.pack(pady=5)
 
     def __add_data__(self):
         try:
@@ -39,7 +45,8 @@ class ViewDataSets:
             self.__data_table__.autoResizeColumns()
             self.__data_table__.show()
             self.__table_frame__.update_idletasks()
-            self.__table_frame__.place_configure(anchor="w", y=300, width=230)
+            self.__table_frame__.place_configure(anchor="w", y=350, width=230, x=15)
+            self.__new_problem_button__.place(anchor="s", x=683, y=728)
         except ValueError:
             print("unu")
 
@@ -48,3 +55,9 @@ class ViewDataSets:
             ViewTableSetsResults(self.__data_array__, self.__w__).__table_sets_results__()
         except Exception:
             print("unu")
+
+    def __new_problem__(self):
+        if self.__data_table__ is not None:
+            self.__data_table__.destroy()
+            self.__table__ = None
+            self.__data_array__.clear()
