@@ -8,7 +8,7 @@ class Main:
             return '#%02x%02x%02x' % (120, 200, 225)
 
         self.window = tk.Tk()
-        self.window.geometry("500x500")
+        self.window.geometry("1366x768")
         self.window.title("ProbabilitySets")
         self.window.configure(bg=rgb2hex())
 
